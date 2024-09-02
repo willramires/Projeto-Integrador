@@ -1,4 +1,4 @@
-const { clients } = require('../clients.js')
+const { clients } = require('../database/clients.js')
 
 function addNewClient(id, name) {
     const newClient = {
