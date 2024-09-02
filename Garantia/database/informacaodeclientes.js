@@ -1,4 +1,4 @@
-const clients = [
+const informacaodeclientes = [
    {
     id: 1,
       nome: "Will",
