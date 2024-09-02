@@ -1,4 +1,4 @@
-const { clients } = require('../clients');
+const { clients } = require('../database/clients');
 
 function deleteClient(id) {
     const index = clients.findIndex(clients => clients.id === id);
