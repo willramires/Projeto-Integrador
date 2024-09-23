@@ -1,39 +1,44 @@
-const express = require('express');
+const express = require('express')
+const app = express()
+const {clients} = require ("./models/clients")
 
-const { clientes } = require("./Models/clientes")
+app.use(express.json())
 
-const app = express();
-
-app.use(express.json());
-
-//READ
 app.get('/', (req, res) => {
-    res.send(clientes)
-});
+  res.send(clients)
+})
 
-//READ BY ID
-app.get('/clients/:id', (req, res) => {
+app.get("/clients/:id", (req, res) => {
+    const {id} = req.params
+    const client = clients.find((value) => value.id === Number(id))
+    if (!client) return res.send("Client not found")
+    res.send(client)
+})
+
+app.post("/clients", (req, res) => {
+    const { name } = req.body
+    const id = clients.lenght + 1
+    clients.push({ id, name })
+    res.send("client added")
+})
+
+app.put("/clients/:id", (req, res) => {
+    const { id } = req.params
+    const { name } = req.body
+    const client = clients.find((value) => value.id === Number(id))
+    if (!client) return res.send("client not found")
+    client.name = name
+    res.send("Client updated")
+})
+
+app.delete("/clients/:id", (req, res) => {
     const { id } = req.params;
-    const cliente = clientes.find((value) => value.id == id);
-    if (!cliente) return res.send('Cliente not found');
-    res.send(cliente);
-});
-
-app.post('/cliente', (req, res) => {
-    console.log('Request body:', req.body); // Adicione esta linha
-    const { name, age, email } = req.body;
-    if (!name || !age || !email) {
-        return res.status(400).send('Missing required fields');
-    }
-    const id = clientes.length + 1;
-    const newUser = { id, name, age, email };
-    clientes.push(newUser);
-    res.status(201).send('Cliente added successfully');
-});
-
+    const index = clients.findIndex((value) => value.id === Number(id))
+    if (index === -1) return res.send("client not found")
+    clients.splice(index, 1)
+    res.send("client deleted")
+})
 
 app.listen(3000, () => {
-    console.log('Server is running on port 3000');
-});
-
-
+  console.log("server is running on port 3000")
+})

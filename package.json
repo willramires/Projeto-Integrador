@@ -1,8 +1,7 @@
 {
-  "name": "commonjsapi",
+  "name": "commomjsapi",
   "version": "1.0.0",
-  "description": "",
-  "main": "teste.js",
+  "main": "index.js",
   "scripts": {
     "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,8 +9,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "description": "",
   "dependencies": {
-    "express": "^4.19.2",
-    "nodemon": "^3.1.4"
+    "express": "^4.21.0",
+    "nodemon": "^3.1.7"
   }
 }
