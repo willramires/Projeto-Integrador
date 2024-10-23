@@ -10,7 +10,6 @@ app.get('/', (req, res) => {
     res.send('Hello World!');
 });
 
-
 app.get("/clientes", (req, res) => {
     pool.query("SELECT * FROM Clientes;", (error, result) => {
         if (error) {
@@ -31,8 +30,6 @@ app.get("/equipamentos", (req, res) => {
     });
 })
 
-
-           
 app.listen(port, () => {
     pool.connect().then((client) => {
         console.log('Connected to the database');
