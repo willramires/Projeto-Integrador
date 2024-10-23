@@ -4,7 +4,7 @@ const { orders } = require('./models/orders')
 const app = express()
 const port = 3000
 
-
+app.use(express.json())
 
 app.get("/orders", async (req, res) =>{
     const orders = await OrderModel.find({}).exec()
@@ -43,8 +43,6 @@ app.post("/orders", async (req, res) => {
     await order.save()
     return res.send(order)
 })
-
-
 
 app.listen(port, () => {
     pool.connect().then(client => {
