@@ -22,11 +22,8 @@ app.get("/clientes", (req, res) => {
 
            
 app.listen(port, () => {
-    pool.connect().then(client => {
-        console.log('connected to the database')
-        client.release()
-    }).catch(err => {
-        console.error('Error connecting to the database', err)
+    pool.connect().then((client) => {
+        console.log('Connected to the database');
+        client.release();
     })
-    console.log(`Server is running on ${port}`)
 })
