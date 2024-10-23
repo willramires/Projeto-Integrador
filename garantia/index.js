@@ -19,35 +19,7 @@ app.get("/orders", async (req, res) => {
     }
 });
 
-app.get("/orders/:id", async (req, res) =>{
-    const order = await OrderModel.findById(req.params.id).exec()
-    if (!order) {
-        return res.status(404).send("Order not found")
-    }
-    return res.send(order)
-})
 
-app.put("/orders/:id", async (req, res) => {
-    const order = await OrderModel.findByIdAndUpdate(req.params.id, req.body, { new: true}).exec()
-    if (!order) {
-        return res.status(404).send("Order not found")
-    }
-    return res.send(order)
-})
-
-app.delete("/orders/:id", async (req, res) => {
-    const order = await OrderModel.findByIdAndUpdate(req.params.id).exec()
-    if (!order) {
-        return res.status(404).send("order not found")
-    }
-    return res.send(order)
-})
-
-app.post("/orders", async (req, res) => {
-    const order = new OrderModel(req.body)
-    await order.save()
-    return res.send(order)
-})
 
 app.listen(port, () => {
     pool.connect().then(client => {
