@@ -6,21 +6,10 @@ const port = 3000
 
 app.use(express.json())
 
-app.get("/orders", async (req, res) => {
-    try {
-        const result = await pool.query('SELECT * FROM orders');
-        const orders = result.rows;
-        if (orders.length === 0) {
-            return res.status(404).send("No orders found");
-        }
-        return res.send(orders);
-    } catch (error) {
-        return res.status(500).send("Server error");
-    }
-});
-
-
-
+app.get("/clientes", async (req, res) => {
+    pool.query('SELECT * FROM clientes'), (error, result) =>
+ ;
+           
 app.listen(port, () => {
     pool.connect().then(client => {
         console.log('connected to the database')
