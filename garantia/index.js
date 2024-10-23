@@ -6,13 +6,18 @@ const port = 3000
 
 app.use(express.json())
 
-app.get("/orders", async (req, res) =>{
-    const orders = await OrderModel.find({}).exec()
-    if (orders.lenght === 0){
-        return res.status(404).send("No orders Found")
+app.get("/orders", async (req, res) => {
+    try {
+        const result = await pool.query('SELECT * FROM orders');
+        const orders = result.rows;
+        if (orders.length === 0) {
+            return res.status(404).send("No orders found");
+        }
+        return res.send(orders);
+    } catch (error) {
+        return res.status(500).send("Server error");
     }
-    return res.send(orders)
-})
+});
 
 app.get("/orders/:id", async (req, res) =>{
     const order = await OrderModel.findById(req.params.id).exec()
