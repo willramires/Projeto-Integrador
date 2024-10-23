@@ -6,9 +6,20 @@ const port = 3000
 
 app.use(express.json())
 
-app.get("/clientes", async (req, res) => {
-    pool.query('SELECT * FROM clientes'), (error, result) =>
- ;
+app.get('/', (req, res) => {
+    res.send('Hello World!');
+});
+
+
+app.get("/clientes", (req, res) => {
+    pool.query("SELECT * FROM Clientes;", (error, result) => {
+        if (error) {
+            res.status(400).send("Error");
+            return;
+        }
+    });
+})
+
            
 app.listen(port, () => {
     pool.connect().then(client => {
