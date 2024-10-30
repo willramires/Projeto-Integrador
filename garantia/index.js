@@ -1,6 +1,5 @@
 const express = require('express')
 const { pool } = require('./db/connection')
-const { orders } = require('./models/orders')
 const app = express()
 const port = 3000
 
@@ -33,7 +32,7 @@ app.get("/equipamentos", (req, res) => {
 app.post("/clientes", async (req,res) => {
     const { nome, email, telefone, endereço } = req.body;
     const result = await pool.query (
-      "INSERT INTO clientes (nome, email, telefone, endereço) VALUES ($1, $2, $3) RETURNING *" ,
+      "INSERT INTO clientes (nome, email, telefone, endereço) VALUES ($1, $2, $3, $4) RETURNING *" ,
       [nome, email, telefone, endereço]
     );
     res.status(201).json(result.rows[0]);
