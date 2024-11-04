@@ -3,8 +3,8 @@ const nodemailer = require("nodemailer");
 let transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-        user: "joaopauloclementesilva@gmail.com",
-        pass: "jtdngwqwimvkivrr", // Replace with your actual password or use an app password
+        user: "controledegarantias@gmail.com",
+        pass: "ucrzgkxvsylgroox", // Replace with your actual password or use an app password
     },
     tls: {
         rejectUnauthorized: false,
@@ -12,8 +12,8 @@ let transporter = nodemailer.createTransport({
 });
 
 let options = {
-    from: "joaopauloclementesilva@gmail.com",
-    to: "clementejp598@gmail.com",
+    from: "controledegarantias@gmail.com",
+    to: "willgabrielramires@gmail.com",
     subject: "Meu primeiro email utilizando o node",
     text: " Olá, caro cliente. ",
 };
